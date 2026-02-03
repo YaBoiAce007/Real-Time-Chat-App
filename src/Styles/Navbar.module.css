@@ -8,10 +8,3 @@
     justify-content: space-evenly;
     border: 1px solid white;
 }
-
-@media (max-width: 750px){
-    .navbar{
-        width: 25vw;
-        height: 100vh;
-    }
-}

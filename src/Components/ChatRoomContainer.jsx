@@ -5,7 +5,7 @@ import ChatRoomBottom from './ChatRoomBottom';
 
 function ChatRoomContainer() {
     return (
-        <section className={styles.chatRoomContainer}>
+        <section className={`chatRoomContainer ${styles.chatRoomContainer}`}>
             <ChatRoomTop />
             <ChatRoomMiddle />
             <ChatRoomBottom />

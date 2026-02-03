@@ -41,3 +41,17 @@
     background-color: white;
     color: black;
 }
+
+@media (max-width: 750px){
+    .navbar{
+        width: 25vw;
+        height: 100vh;
+    }
+    .chatRoomsContainer{
+        width:75vw;
+        height: 100vh;
+    }
+    .chatRoomContainer{
+        display: none;
+    }
+}

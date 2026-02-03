@@ -2,13 +2,13 @@ import styles from '../Styles/ChatRoomsContainer.module.css';
 import ChatRoomsTop from './ChatRoomsTop';
 import ChatRoomsBottom from './ChatRoomsBottom';
 
-function chatRoomsContainer(){
+function ChatRoomsContainer(){
     return(
-        <section className={styles.chatRoomsContainer}>
+        <section className={`chatRoomsContainer ${styles.chatRoomsContainer}`}>
             <ChatRoomsTop />
             <ChatRoomsBottom />
         </section>
     )
 }
 
-export default chatRoomsContainer;
+export default ChatRoomsContainer;

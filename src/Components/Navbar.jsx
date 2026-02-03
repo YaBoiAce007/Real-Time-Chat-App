@@ -8,7 +8,7 @@ import styles from '../Styles/Navbar.module.css';
 function Navbar() {
     return (
 
-        <nav className={styles.navbar}>
+        <nav className={`navbar ${styles.navbar}`}>
             <MessageCircleMore className={`icon ${styles.navIcon}`} />
             <UserRoundPlus className={`icon ${styles.navIcon}`} />
             <UsersRound className={`icon ${styles.navIcon}`} />
