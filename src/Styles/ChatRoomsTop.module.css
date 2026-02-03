@@ -1,0 +1,15 @@
+.chatRoomsTop{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    height: 10%;
+    width: 100%;
+    background-color: black;
+}
+
+.chatRoomsTopTitle, .chatRoomsTopIcon{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}

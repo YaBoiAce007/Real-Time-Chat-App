@@ -1,0 +1,6 @@
+.chatRoomsContainer{
+    width: 25vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
