@@ -1,6 +1,10 @@
-.chatRoomContainer{
-    width: 70vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+
+
+@media (min-width:750px) {
+    .chatRoomContainer {
+        width: 70vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 }
