@@ -3,10 +3,10 @@ import ChatRoomTop from './ChatRoomTop';
 import ChatRoomMiddle from './ChatRoomMiddle';
 import ChatRoomBottom from './ChatRoomBottom';
 
-function ChatRoomContainer() {
+function ChatRoomContainer({setActiveComponent}) {
     return (
         <section className={`chatRoomContainer ${styles.chatRoomContainer}`}>
-            <ChatRoomTop />
+            <ChatRoomTop setActiveComponent={setActiveComponent} />
             <ChatRoomMiddle />
             <ChatRoomBottom />
         </section>
