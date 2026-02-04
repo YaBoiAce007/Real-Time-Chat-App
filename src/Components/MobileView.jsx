@@ -2,7 +2,7 @@ import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
 
-function MobileView({ activeComponent, setActiveComponent }) {
+function MobileView(({ activeComponent, setActiveComponent, selectedChat, setSelectedChat }) {
 
     const style = {
         width: '80vw',
