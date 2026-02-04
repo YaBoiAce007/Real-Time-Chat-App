@@ -22,10 +22,10 @@
     width: 3rem;
     height: 3rem;
     padding: .5rem;
-    transition: background-color .5s ease, color .5s ease;
     flex-shrink: 0;
     background-color: black;
     color: white;
+    transition: background-color .5s ease, color .5s ease;
 }
 
 @media (hover:hover) and (pointer:fine) {
@@ -44,7 +44,6 @@
 
 .chatRoomsContainer, .chatRoomContainer, .banner{
     animation: componentDisplayAnimation .5s ease forwards;
-    z-index: -1;
 }
 
 @keyframes componentDisplayAnimation {
@@ -56,4 +55,8 @@
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+.navbar{
+    z-index: 10;
 }
