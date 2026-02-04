@@ -1,6 +1,6 @@
 import styles from '../Styles/ChatRoomsBottom.module.css';
 
-function ChatRoomsBottom(){
+function ChatRoomsBottom({setSelectedChat}){
     return(
         <section className={styles.chatRoomsBottom}>
             

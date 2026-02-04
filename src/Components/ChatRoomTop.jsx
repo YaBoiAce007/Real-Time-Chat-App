@@ -1,7 +1,7 @@
 import {EllipsisVertical} from 'lucide-react';
 import styles from '../Styles/ChatRoomTop.module.css';
 
-function ChatRoomTop() {
+function ChatRoomTop({setActiveComponent}) {
     return (
         <section className={styles.chatRoomTop}>
             <h2 className={styles.chatRoomTopName}>Chat Room Name</h2>
