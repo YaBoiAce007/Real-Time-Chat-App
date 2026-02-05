@@ -1,7 +1,7 @@
 import { EllipsisVertical } from 'lucide-react';
 
 
-function ChatRoomTop({ setActiveComponent }) {
+function ChatRoomTop() {
 
     const style = {
         height: '10%',

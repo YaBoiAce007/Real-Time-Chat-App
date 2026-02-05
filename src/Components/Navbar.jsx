@@ -2,8 +2,11 @@ import { MessageCircleMore } from 'lucide-react';
 import { UserRound } from 'lucide-react';
 import { UserRoundPlus } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
+import { useAppContext } from '../Contexts/AppContext';
 
-function Navbar({setActiveComponent}) {
+function Navbar() {
+
+    const {setActiveComponent} = useAppContext();
 
     const style = {
         height: '100%',

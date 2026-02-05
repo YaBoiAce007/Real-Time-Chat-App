@@ -1,6 +1,6 @@
 
 
-function ChatRoomsBottom({setSelectedChat}){
+function ChatRoomsBottom(){
     return(
         <div className={`flex-col`}>
             

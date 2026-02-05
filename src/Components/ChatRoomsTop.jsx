@@ -1,7 +1,7 @@
 
 import { MessageCirclePlus } from 'lucide-react';
 
-function ChatRoomsTop({setActiveComponent}) {
+function ChatRoomsTop() {
 
     const style={
         height: '10%',

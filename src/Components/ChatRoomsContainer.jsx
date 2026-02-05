@@ -2,12 +2,12 @@
 import ChatRoomsTop from './ChatRoomsTop';
 import ChatRoomsBottom from './ChatRoomsBottom';
 
-function ChatRoomsContainer({setActiveComponent, setSelectedChat}){
+function ChatRoomsContainer(){
 
     return(
         <div className={`chat-rooms flex-col bg-font-color animate-display`}>
-            <ChatRoomsTop setActiveComponent={setActiveComponent} />
-            <ChatRoomsBottom setSelectedChat={setSelectedChat} />
+            <ChatRoomsTop />
+            <ChatRoomsBottom />
         </div>
     )
 }

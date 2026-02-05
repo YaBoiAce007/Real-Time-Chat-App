@@ -2,7 +2,7 @@ import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
 
-function DesktopView({ activeComponent, setActiveComponent, selectedChat, setSelectedChat }) {
+function DesktopView() {
 
     const style1 = {
         width: '95%',
@@ -19,13 +19,8 @@ function DesktopView({ activeComponent, setActiveComponent, selectedChat, setSel
     if (activeComponent === 'ChatRooms' && selectedChat) {
         return (
             <>
-                <ChatRoomsContainer
-                    setActiveComponent={setActiveComponent}
-                    setSelectedChat={setSelectedChat}
-                />
-                <ChatRoomContainer 
-                    setActiveComponent={setActiveComponent}
-                />
+                <ChatRoomsContainer/>
+                <ChatRoomContainer/>
             </>
         )
     }
@@ -33,10 +28,7 @@ function DesktopView({ activeComponent, setActiveComponent, selectedChat, setSel
     if (activeComponent === 'ChatRooms' && !selectedChat) {
         return (
             <>
-                <ChatRoomsContainer
-                    setActiveComponent={setActiveComponent}
-                    setSelectedChat={setSelectedChat}
-                />
+                <ChatRoomsContainer/>
                 <Banner style={style2} />
             </>
         )
