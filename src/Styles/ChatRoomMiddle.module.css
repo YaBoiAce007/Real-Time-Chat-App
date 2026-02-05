@@ -1,9 +1,0 @@
-.chatRoomMiddle{
-    height: 80%;
-    width: 100%;
-    border: 1px solid white;
-    color: white;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-}

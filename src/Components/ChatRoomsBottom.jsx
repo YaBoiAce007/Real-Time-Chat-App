@@ -1,10 +1,10 @@
-import styles from '../Styles/ChatRoomsBottom.module.css';
+
 
 function ChatRoomsBottom({setSelectedChat}){
     return(
-        <section className={styles.chatRoomsBottom}>
+        <div className={`flex-col`}>
             
-        </section>
+        </div>
     )
 }
 

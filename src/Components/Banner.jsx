@@ -1,11 +1,9 @@
-import styles from '../Styles/Banner.module.css';
-
 function Banner({style}){
     return(
-        <section style={style} className={`banner ${styles.container}`}>
+        <div style={style} className={`flex-col center-center animate-display`}>
             <h1>ACE'S CHAT APP</h1>
             <p>Don't forget to socialise!!!</p>
-        </section>
+        </div>
     )
 }
 

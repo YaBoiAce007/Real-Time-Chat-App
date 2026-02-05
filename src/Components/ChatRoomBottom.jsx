@@ -1,12 +1,20 @@
-import styles from '../Styles/ChatRoomBottom.module.css';
 import { Send } from 'lucide-react';
 
 function ChatRoomBottom() {
+
+    const style = {
+        height: '10%',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        border: '2px solid white'
+    }
+
     return (
-        <section className={styles.chatRoomBottom}>
-            <textarea className={styles.chatRoomBottomInput} placeholder='Type a message...'></textarea>
-            <Send className={`icon ${styles.chatRoomBottomIcon}`} />
-        </section>
+        <div style={style} className={`flex-row `}>
+            <textarea className={`margin-x `} placeholder='Type a message...'></textarea>
+            <Send className={`icon margin-x`} />
+        </div>
     )
 }
 

@@ -1,15 +1,14 @@
-import styles from '../Styles/ChatRoomContainer.module.css';
 import ChatRoomTop from './ChatRoomTop';
 import ChatRoomMiddle from './ChatRoomMiddle';
 import ChatRoomBottom from './ChatRoomBottom';
 
 function ChatRoomContainer({setActiveComponent}) {
     return (
-        <section className={`chatRoomContainer ${styles.chatRoomContainer}`}>
+        <div className={`chat-room flex-col bg-font-color animate-display`}>
             <ChatRoomTop setActiveComponent={setActiveComponent} />
             <ChatRoomMiddle />
             <ChatRoomBottom />
-        </section>
+        </div>
     )
 }
 

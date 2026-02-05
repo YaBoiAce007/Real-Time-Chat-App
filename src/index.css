@@ -1,3 +1,12 @@
+:root {
+    --primaryBgColor: black;
+    --primaryFontColor: white;
+    --secondaryBgColor: white;
+    --secondaryFontColor: black;
+    --thumbColor: rgba(0, 0, 0, 0.455);
+    --trackColor: white;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
@@ -5,16 +14,15 @@
 }
 
 ::-webkit-scrollbar {
-    border-radius: 1rem;
     width: .5vw;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: white;
+    background-color: var(--trackColor);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.455);
+    background-color: var(--thumbColor);
 }
 
 .icon {
@@ -23,26 +31,26 @@
     height: 3rem;
     padding: .5rem;
     flex-shrink: 0;
-    background-color: black;
-    color: white;
+    background-color: var(--primaryBgColor);
+    color: var(--primaryFontColor);
     transition: background-color .5s ease, color .5s ease;
 }
 
 @media (hover:hover) and (pointer:fine) {
     .icon:hover {
         cursor: pointer;
-        background-color: white;
-        color: black;
+        background-color: var(--secondaryBgColor);
+        color: var(--secondaryFontColor);
     }
 }
 
 .icon:active {
     cursor: pointer;
-    background-color: white;
-    color: black;
+    background-color: var(--secondaryBgColor);
+    color: var(--secondaryFontColor);
 }
 
-.chatRoomsContainer, .chatRoomContainer, .banner{
+.animate-display {
     animation: componentDisplayAnimation .5s ease forwards;
 }
 
@@ -51,12 +59,63 @@
         opacity: 0;
         transform: translateX(-100%);
     }
-    to{
+
+    to {
         opacity: 1;
         transform: translateX(0);
     }
 }
 
-.navbar{
+.navbar {
     z-index: 10;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.center-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen-display {
+    width: 100vw;
+    height: 100vh;
+}
+
+.bg-font-color {
+    background-color: var(--primaryBgColor);
+    color: var(--primaryFontColor);
+}
+
+.margin-x {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.parent-size {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-rooms {
+    width: 45%;
+    height: 100%;
+}
+
+.chat-room {
+    width: 50%;
+    height: 100%;
+}
+
+@media(max-width: 770px) {
+    .chat-rooms, .chat-room {
+        width: 95%;
+    }
 }

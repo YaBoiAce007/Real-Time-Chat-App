@@ -1,12 +1,21 @@
-import {EllipsisVertical} from 'lucide-react';
-import styles from '../Styles/ChatRoomTop.module.css';
+import { EllipsisVertical } from 'lucide-react';
 
-function ChatRoomTop({setActiveComponent}) {
+
+function ChatRoomTop({ setActiveComponent }) {
+
+    const style = {
+        height: '10%',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        border: '2px solid white'
+    }
+
     return (
-        <section className={styles.chatRoomTop}>
-            <h2 className={styles.chatRoomTopName}>Chat Room Name</h2>
-            <EllipsisVertical className={`icon ${styles.chatRoomTopIcon}`} />
-        </section>
+        <div style={style} className={`flex-row`}>
+            <h2 className={`margin-x`}>Chat Room Name</h2>
+            <EllipsisVertical className={`icon margin-x`} />
+        </div>
     )
 }
 

@@ -1,37 +1,50 @@
 import ChatRoomsContainer from "./ChatRoomsContainer";
+import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
 
 function DesktopView({ activeComponent, setActiveComponent, selectedChat, setSelectedChat }) {
 
     const style1 = {
-        width: '70vw',
-        height: '100vh'
+        width: '95%',
+        height: '100%',
+        border: '2px solid white'
     }
-
+    
     const style2 = {
-        width: '95vw',
-        height: '100vh'
+        width: '70%',
+        height: '100%',
+        border: '2px solid white'
     }
 
     if (activeComponent === 'ChatRooms' && selectedChat) {
-        return (<></>)
+        return (
+            <>
+                <ChatRoomsContainer
+                    setActiveComponent={setActiveComponent}
+                    setSelectedChat={setSelectedChat}
+                />
+                <ChatRoomContainer 
+                    setActiveComponent={setActiveComponent}
+                />
+            </>
+        )
     }
 
     if (activeComponent === 'ChatRooms' && !selectedChat) {
         return (
-                    <>
-                        <ChatRoomsContainer
-                            setActiveComponent={setActiveComponent}
-                            setSelectedChat={setSelectedChat}
-                        />
-                        <Banner style={style1}/>
-                    </>
-                )
+            <>
+                <ChatRoomsContainer
+                    setActiveComponent={setActiveComponent}
+                    setSelectedChat={setSelectedChat}
+                />
+                <Banner style={style2} />
+            </>
+        )
     }
-    if(activeComponent === 'Banner') {
+    if (activeComponent === 'Banner') {
         return (
-                    <Banner style={style2}/>
-                )
+            <Banner style={style1} />
+        )
     }
 }
 

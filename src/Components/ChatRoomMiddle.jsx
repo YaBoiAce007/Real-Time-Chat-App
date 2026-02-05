@@ -1,10 +1,10 @@
-import styles from '../Styles/ChatRoomMiddle.module.css';
+
 
 function ChatRoomMiddle(){
     return(
-        <section className={styles.chatRoomMiddle}>
+        <div>
 
-        </section>
+        </div>
     )
 }
 

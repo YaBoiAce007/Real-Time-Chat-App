@@ -1,5 +1,4 @@
 import Navbar from "./Components/Navbar";
-import styles from './App.module.css';
 import {useState, useEffect} from 'react';
 import MobileView from "./Components/MobileView";
 import DesktopView from "./Components/DesktopView";
@@ -19,7 +18,7 @@ function App() {
   }, [])
 
   return (
-    <section className={styles.app}>
+    <section className={`flex-row fullscreen-display bg-font-color`}>
       <Navbar 
         setActiveComponent={setActiveComponent}
         setSelectedChat={setSelectedChat}

@@ -5,8 +5,9 @@ import Banner from "./Banner";
 function MobileView({ activeComponent, setActiveComponent, selectedChat, setSelectedChat }) {
 
     const style = {
-        width: '80vw',
-        height: '100vh'
+        width: '95%',
+        height: '100%',
+        border: '2px solid white'
     }
 
     switch (activeComponent) {
