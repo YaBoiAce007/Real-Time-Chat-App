@@ -5,12 +5,18 @@ import { useAppContext } from "../Contexts/AppContext";
 
 function MobileView() {
 
-    const {activeComponent} = useAppContext(); 
+    const {activeComponent, selectedChat} = useAppContext(); 
 
     const style = {
         width: '80%',
         height: '100%',
         border: '2px solid white'
+    }
+
+    if(selectedChat){
+        return(
+            <ChatRoomContainer />
+        )
     }
 
     switch (activeComponent) {
