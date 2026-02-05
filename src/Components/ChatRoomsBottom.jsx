@@ -23,17 +23,11 @@ function ChatRoomsBottom() {
         cursor: 'pointer'
     }
 
-    const textStyle = {
-        whiteSpace: 'nowrap',
-        overflowX: 'hidden',
-        textOverflow: 'ellipsis'
-    }
-
     return (
         <div style={outerStyle} className={`flex-col`}>
             <div style={innerStyle} className={`flex-col`} onClick={() => setSelectedChat(1)}>
-                <p style={textStyle}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos minima minus a alias impedit! Iusto quod pariatur error dignissimos doloremque quas distinctio, fugit eos officia porro nobis, ipsam minima velit ad cumque perferendis eligendi, ipsa dolorem modi aperiam. Deleniti distinctio nulla voluptas!</p>
-                <p style={textStyle}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere cumque, eum facilis numquam eveniet itaque temporibus, perferendis quod ipsam, hic autem unde dignissimos error atque sed obcaecati voluptate ipsa? Voluptatum ipsum magnam ipsa eveniet repellat voluptatibus minima illo repudiandae dolorem, aut a similique.</p>
+                <p className={`nw-hide-ellip`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos minima minus a alias impedit! Iusto quod pariatur error dignissimos doloremque quas distinctio, fugit eos officia porro nobis, ipsam minima velit ad cumque perferendis eligendi, ipsa dolorem modi aperiam. Deleniti distinctio nulla voluptas!</p>
+                <p className={`nw-hide-ellip`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere cumque, eum facilis numquam eveniet itaque temporibus, perferendis quod ipsam, hic autem unde dignissimos error atque sed obcaecati voluptate ipsa? Voluptatum ipsum magnam ipsa eveniet repellat voluptatibus minima illo repudiandae dolorem, aut a similique.</p>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ function ChatRoomTop() {
 
     return (
         <div style={style} className={`flex-row`}>
-            <h2 className={`margin-x`}>Chat Room Name</h2>
+            <h2 className={`margin-x nw-hide-ellip`}>Chat Room Name</h2>
             <EllipsisVertical className={`icon margin-x`} />
         </div>
     )
