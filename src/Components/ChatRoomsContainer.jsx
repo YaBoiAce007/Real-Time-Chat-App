@@ -5,7 +5,7 @@ import ChatRoomsBottom from './ChatRoomsBottom';
 function ChatRoomsContainer(){
 
     return(
-        <div className={`chat-rooms flex-col bg-font-color animate-display`}>
+        <div className={`chat-rooms flex-col animate-display`}>
             <ChatRoomsTop />
             <ChatRoomsBottom />
         </div>

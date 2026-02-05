@@ -9,7 +9,6 @@ function Navbar() {
     const {setActiveComponent} = useAppContext();
 
     const style = {
-        height: '100%',
         justifyContent: 'space-evenly',
         alignItems: 'center',
         border: '2px solid white'

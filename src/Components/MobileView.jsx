@@ -1,8 +1,11 @@
 import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
+import { useAppContext } from "../Contexts/AppContext";
 
 function MobileView() {
+
+    const {activeComponent} = useAppContext(); 
 
     const style = {
         width: '80%',

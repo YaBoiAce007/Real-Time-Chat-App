@@ -69,6 +69,7 @@
 .navbar {
     z-index: 10;
     width: 5%;
+    height: 100%;
 }
 
 .flex-col {
@@ -98,11 +99,6 @@
 .margin-x {
     margin-left: 2rem;
     margin-right: 2rem;
-}
-
-.parent-size {
-    width: 100%;
-    height: 100%;
 }
 
 .chat-rooms {

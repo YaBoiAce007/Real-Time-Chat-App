@@ -1,8 +1,11 @@
 import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
+import { useAppContext } from "../Contexts/AppContext";
 
 function DesktopView() {
+
+    const {activeComponent, selectedChat} = useAppContext(); 
 
     const style1 = {
         width: '95%',
