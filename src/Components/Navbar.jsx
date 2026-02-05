@@ -6,7 +6,6 @@ import { UsersRound } from 'lucide-react';
 function Navbar({setActiveComponent}) {
 
     const style = {
-        width: '5%',
         height: '100%',
         justifyContent: 'space-evenly',
         alignItems: 'center',

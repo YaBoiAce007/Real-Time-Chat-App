@@ -68,6 +68,7 @@
 
 .navbar {
     z-index: 10;
+    width: 5%;
 }
 
 .flex-col {
@@ -116,6 +117,9 @@
 
 @media(max-width: 770px) {
     .chat-rooms, .chat-room {
-        width: 95%;
+        width: 80%;
+    }
+    .navbar{
+        width: 20%;
     }
 }
