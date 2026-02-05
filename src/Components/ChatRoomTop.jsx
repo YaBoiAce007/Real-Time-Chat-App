@@ -1,7 +1,10 @@
 import { EllipsisVertical } from 'lucide-react';
+import {CircleChevronLeft} from 'lucide-react';
+import {useAppContext} from '../Contexts/AppContext';
 
+function ChatRoomTop({goBackTo}) {
 
-function ChatRoomTop() {
+    const {setActiveComponent, setSelectedChat} = useAppContext();
 
     const style = {
         height: '10%',
@@ -13,8 +16,9 @@ function ChatRoomTop() {
 
     return (
         <div style={style} className={`flex-row`}>
-            <h2 className={`margin-x nw-hide-ellip`}>Chat Room Name</h2>
-            <EllipsisVertical className={`icon margin-x`} />
+            <CircleChevronLeft className={`icon tran-eff`} onClick={()=>{setActiveComponent(goBackTo); setSelectedChat(null)}}/>
+            <h2 className={`nw-hide-ellip`}>Chat Room Name</h2>
+            <EllipsisVertical className={`icon tran-eff `} />
         </div>
     )
 }

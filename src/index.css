@@ -33,18 +33,22 @@
     flex-shrink: 0;
     background-color: var(--primaryBgColor);
     color: var(--primaryFontColor);
+}
+
+.tran-eff {
     transition: background-color .5s ease, color .5s ease;
 }
 
 @media (hover:hover) and (pointer:fine) {
-    .icon:hover {
+
+    .tran-eff:hover {
         cursor: pointer;
         background-color: var(--secondaryBgColor);
         color: var(--secondaryFontColor);
     }
 }
 
-.icon:active {
+.tran-eff:active {
     cursor: pointer;
     background-color: var(--secondaryBgColor);
     color: var(--secondaryFontColor);
@@ -123,6 +127,8 @@
     resize: none;
     background-color: transparent;
 }
+
+
 
 @media(max-width: 770px) {
 

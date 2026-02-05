@@ -14,7 +14,7 @@ function ChatRoomsTop() {
     return (
         <div style={style} className={`flex-row`}>
             <h1 className={`margin-x`}>Chats</h1>
-            <MessageCirclePlus className={`icon margin-x`} />
+            <MessageCirclePlus className={`icon tran-eff margin-x`} />
         </div>
     )
 }

@@ -2,10 +2,10 @@ import ChatRoomTop from './ChatRoomTop';
 import ChatRoomMiddle from './ChatRoomMiddle';
 import ChatRoomBottom from './ChatRoomBottom';
 
-function ChatRoomContainer() {
+function ChatRoomContainer({goBackTo}) {
     return (
         <div className={`chat-room flex-col animate-display`}>
-            <ChatRoomTop />
+            <ChatRoomTop goBackTo={goBackTo}/>
             <ChatRoomMiddle />
             <ChatRoomBottom />
         </div>

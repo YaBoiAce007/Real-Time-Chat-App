@@ -14,7 +14,7 @@ function DesktopView() {
     }
     
     const style2 = {
-        width: '70%',
+        width: '50%',
         height: '100%',
         border: '2px solid white'
     }
@@ -23,7 +23,7 @@ function DesktopView() {
         return (
             <>
                 <ChatRoomsContainer/>
-                <ChatRoomContainer/>
+                <ChatRoomContainer goBackTo={'ChatRooms'}/>
             </>
         )
     }

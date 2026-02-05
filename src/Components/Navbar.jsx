@@ -16,10 +16,10 @@ function Navbar() {
 
     return (
         <nav style={style} className={`navbar flex-col`}>
-            <MessageCircleMore className={`icon `} onClick={() => setActiveComponent('ChatRooms')} />
-            <UserRoundPlus className={`icon `} onClick={() => {setActiveComponent('AddFriend'); setSelectedChat(null);}}/>
-            <UsersRound className={`icon `} onClick={() => {setActiveComponent('Friends'); setSelectedChat(null);}}/>
-            <UserRound className={`icon `} onClick={() => {setActiveComponent('Profile'); setSelectedChat(null);}}/>
+            <MessageCircleMore className={`icon  tran-eff`} onClick={() => setActiveComponent('ChatRooms')} />
+            <UserRoundPlus className={`icon  tran-eff`} onClick={() => {setActiveComponent('AddFriend'); setSelectedChat(null);}}/>
+            <UsersRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Friends'); setSelectedChat(null);}}/>
+            <UserRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Profile'); setSelectedChat(null);}}/>
         </nav>
     )
 }

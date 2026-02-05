@@ -15,7 +15,7 @@ function MobileView() {
 
     if(selectedChat){
         return(
-            <ChatRoomContainer />
+            <ChatRoomContainer goBackTo={'ChatRooms'}/>
         )
     }
 
@@ -23,13 +23,7 @@ function MobileView() {
         case 'Banner':
             return <Banner style={style} />;
         case 'ChatRooms':
-            return (
-                <ChatRoomsContainer/>
-            )
-        case 'Chat':
-            return (
-                <ChatRoomContainer/>
-            )
+            return <ChatRoomsContainer/>;
     }
 }
 
