@@ -111,6 +111,13 @@
     height: 100%;
 }
 
+.input-text-area{
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+}
+
 @media(max-width: 770px) {
     .chat-rooms, .chat-room {
         width: 80%;
