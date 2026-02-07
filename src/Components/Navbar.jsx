@@ -6,7 +6,7 @@ import { useAppContext } from '../Contexts/AppContext';
 
 function Navbar() {
 
-    const {setActiveComponent, setSelectedChat} = useAppContext();
+    const {setActiveComponent, setSelectedChat, setShowSettings} = useAppContext();
 
     const style = {
         justifyContent: 'space-evenly',
@@ -17,9 +17,9 @@ function Navbar() {
     return (
         <nav style={style} className={`navbar flex-col`}>
             <MessageCircleMore className={`icon  tran-eff`} onClick={() => setActiveComponent('ChatRooms')} />
-            <UserRoundPlus className={`icon  tran-eff`} onClick={() => {setActiveComponent('AddFriend'); setSelectedChat(null);}}/>
-            <UsersRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Friends'); setSelectedChat(null);}}/>
-            <UserRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Profile'); setSelectedChat(null);}}/>
+            <UserRoundPlus className={`icon  tran-eff`} onClick={() => {setActiveComponent('AddFriend'); setSelectedChat(null);setShowSettings(false);}}/>
+            <UsersRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Friends'); setSelectedChat(null);setShowSettings(false);}}/>
+            <UserRound className={`icon  tran-eff`} onClick={() => {setActiveComponent('Profile'); setSelectedChat(null);setShowSettings(false);}}/>
         </nav>
     )
 }

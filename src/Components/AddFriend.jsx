@@ -19,8 +19,8 @@ function AddFriend() {
     return (
         <div className={`add-friend animate-display`}>
             <div style={style1} className={`flex-row`}>
-                <input className={`input-text-area margin-x`} type="text" placeholder="Enter username" />
-                <Search className={`icon tran-eff margin-x`} />
+                <input style={{marginLeft:'1rem'}} className={`input-text-area`} type="text" placeholder="Enter username" />
+                <Search style={{marginRight:'1rem'}} className={`icon tran-eff`} />
             </div>
             <div style={style2} className={`flex-col`}></div>
         </div>

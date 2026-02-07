@@ -5,6 +5,7 @@ import { useAppContext } from "../Contexts/AppContext";
 import AddFriend from "./AddFriend";
 import Friends from "./Friends";
 import Profile from "./Profile";
+import StartChat from "./StartChat";
 
 function MobileView() {
 
@@ -33,6 +34,8 @@ function MobileView() {
             return <Friends />;
         case 'Profile':
             return <Profile />;
+        case 'StartChat':
+            return <StartChat goBackTo={'ChatRooms'}/>;
     }
 }
 

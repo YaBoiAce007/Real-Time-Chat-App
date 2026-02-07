@@ -5,6 +5,7 @@ const appContext = createContext();
 export function AppContextProvider({ children }) {
     const [activeComponent, setActiveComponent] = useState('Banner');
     const [selectedChat, setSelectedChat] = useState(null);
+    const [showSettings, setShowSettings] = useState(false);
 
     return (
         <appContext.Provider value={
@@ -12,7 +13,9 @@ export function AppContextProvider({ children }) {
                 activeComponent,
                 setActiveComponent,
                 selectedChat,
-                setSelectedChat
+                setSelectedChat,
+                showSettings,
+                setShowSettings
             }
         }
         >

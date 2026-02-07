@@ -108,12 +108,14 @@
 .chat-rooms,
 .add-friend,
 .friends,
-.profile {
+.profile,
+.start-chat {
     width: 45%;
     height: 100%;
 }
 
-.chat-room {
+.chat-room,
+.chat-settings {
     width: 50%;
     height: 100%;
 }
@@ -140,7 +142,9 @@
     .chat-room,
     .add-friend,
     .friends,
-    .profile {
+    .profile,
+    .start-chat,
+    .chat-settings {
         width: 80%;
     }
 

@@ -5,6 +5,7 @@ import AddFriend from "./AddFriend";
 import { useAppContext } from "../Contexts/AppContext";
 import Friends from "./Friends";
 import Profile from "./Profile";
+import StartChat from "./StartChat";
 
 function DesktopView() {
 
@@ -64,6 +65,14 @@ function DesktopView() {
             return (
                 <>
                     <Profile />
+                    <Banner style={style2} />
+                </>
+            );
+
+        case 'StartChat':
+            return (
+                <>
+                    <StartChat goBackTo={'ChatRooms'}/>
                     <Banner style={style2} />
                 </>
             );
