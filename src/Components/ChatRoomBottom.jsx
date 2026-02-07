@@ -12,7 +12,7 @@ function ChatRoomBottom() {
 
     return (
         <div style={style} className={`flex-row `}>
-            <textarea className={`input-text-area margin-x bg-font-color`} placeholder='Type a message...'></textarea>
+            <textarea className={`input-text-area margin-x`} placeholder='Type a message...'></textarea>
             <Send className={`icon tran-eff margin-x`} />
         </div>
     )

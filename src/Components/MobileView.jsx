@@ -2,6 +2,9 @@ import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
 import { useAppContext } from "../Contexts/AppContext";
+import AddFriend from "./AddFriend";
+import Friends from "./Friends";
+import Profile from "./Profile";
 
 function MobileView() {
 
@@ -24,6 +27,12 @@ function MobileView() {
             return <Banner style={style} />;
         case 'ChatRooms':
             return <ChatRoomsContainer/>;
+        case 'AddFriend':
+            return <AddFriend/>;
+        case 'Friends':
+            return <Friends />;
+        case 'Profile':
+            return <Profile />;
     }
 }
 

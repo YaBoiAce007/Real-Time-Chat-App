@@ -105,7 +105,10 @@
     margin-right: 2rem;
 }
 
-.chat-rooms {
+.chat-rooms,
+.add-friend,
+.friends,
+.profile {
     width: 45%;
     height: 100%;
 }
@@ -126,6 +129,7 @@
     outline: none;
     resize: none;
     background-color: transparent;
+    color: inherit;
 }
 
 
@@ -133,7 +137,10 @@
 @media(max-width: 770px) {
 
     .chat-rooms,
-    .chat-room {
+    .chat-room,
+    .add-friend,
+    .friends,
+    .profile {
         width: 80%;
     }
 
