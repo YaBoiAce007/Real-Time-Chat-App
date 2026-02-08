@@ -31,9 +31,9 @@ function StartChat({goBackTo}) {
                 No contacts selected
             </div>
             <div style={style2} className={`flex-row`}>
-                <CircleChevronLeft style={{marginLeft:'2rem'}} className={`icon tran-eff`} onClick={()=>setActiveComponent(goBackTo)}/>
+                <CircleChevronLeft className={`icon tran-eff`} onClick={()=>setActiveComponent(goBackTo)}/>
                 <input className={`input-text-area`} type="text" placeholder="Enter username" />
-                <Search style={{marginRight:'2rem'}} className={`icon tran-eff`} />
+                <Search className={`icon tran-eff`} />
             </div>
             <div style={style3} className={`flex-col`}></div>
         </div>
