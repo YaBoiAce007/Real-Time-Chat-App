@@ -22,8 +22,8 @@ function Login() {
         <>
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Login</h1>
-                <input style={inputStyle} className={`input-text-area`} type="text" placeholder="Enter username" name="username" />
-                <input style={inputStyle} className={`input-text-area`} type="password" placeholder="Enter password"  name="password" />
+                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" />
+                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" />
                 <button className={`btn tran-eff`}>
                     Login
                 </button>

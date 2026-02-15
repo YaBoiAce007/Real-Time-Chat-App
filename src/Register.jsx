@@ -62,8 +62,8 @@ function Register() {
         <>
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Register</h1>
-                <input style={inputStyle} className={`input-text-area`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
-                <input style={inputStyle} className={`input-text-area`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
+                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
+                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
                 <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Register
                 </button>
