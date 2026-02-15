@@ -6,7 +6,7 @@ export function AppContextProvider({ children }) {
     const [activeComponent, setActiveComponent] = useState('Banner');
     const [selectedChat, setSelectedChat] = useState(null);
     const [showSettings, setShowSettings] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
 
     return (
         <appContext.Provider value={
@@ -17,8 +17,8 @@ export function AppContextProvider({ children }) {
                 setSelectedChat,
                 showSettings,
                 setShowSettings,
-                isAuthenticated,
-                setIsAuthenticated
+                isMobile,
+                setIsMobile
             }
         }
         >

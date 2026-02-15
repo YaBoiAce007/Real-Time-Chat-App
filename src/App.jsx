@@ -1,14 +1,15 @@
-import Navbar from "./Components/Navbar";
-import { useState, useEffect } from 'react';
-import MobileView from "./Components/MobileView";
-import DesktopView from "./Components/DesktopView";
-import { useAppContext } from "./Contexts/AppContext";
-import AuthPage from "./AuthPage";
+import { useEffect } from 'react';
+import { useAuthContext } from './Contexts/AuthContext';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Register from './Register';
+import AppContent from './Components/AppContent';
+import ProtectedRoute from './ProtectedRoute';
+import Login from './Login';
+import { useAppContext } from './Contexts/AppContext';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
 
-  const {isAuthenticated} = useAppContext();
+  const {setIsMobile} = useAppContext();
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,17 +20,31 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, [])
 
-  if(!isAuthenticated){
-    return <AuthPage/>
-  }
+  const AuthRedirect = () => {
+    const { isAuthenticated } = useAuthContext();
+
+    return isAuthenticated ? <Navigate to="/" replace /> : <Navigate to="/login" replace />;
+  };
 
   return (
-    <section className={`flex-row fullscreen-display bg-font-color`}>
-      <Navbar />
-      {
-        isMobile ? (<MobileView />) : (<DesktopView />)
-      }
-    </section>
+    <Routes>
+      {/* Public routes */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protected routes */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <AppContent />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Catch all - redirect based on auth status */}
+      <Route path="*" element={<AuthRedirect />} />
+    </Routes>
   )
 }
 
