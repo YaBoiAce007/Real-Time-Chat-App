@@ -16,8 +16,6 @@ function Login() {
     const inputStyle = {
         border: '2px solid white',
         borderRadius: '1rem',
-        width: '25%',
-        height: '7.5%'
     }
 
     return (

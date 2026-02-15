@@ -35,7 +35,7 @@
     color: var(--primaryFontColor);
 }
 
-.btn{
+.btn {
     display: inline-block;
     border-radius: 2rem;
     width: fit-content;
@@ -157,6 +157,11 @@
     color: inherit;
 }
 
+.auth-input {
+    width: 25%;
+    height: 7.5%;
+}
+
 @media(max-width: 770px) {
 
     .chat-rooms,
@@ -171,5 +176,10 @@
 
     .navbar {
         width: 20%;
+    }
+
+    .auth-input {
+        width: 50%;
+        height: 7.5%;
     }
 }
