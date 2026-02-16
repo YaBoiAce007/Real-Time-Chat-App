@@ -12,8 +12,6 @@ function Register() {
         }
     )
 
-    const { setIsAuthenticated } = useAuthContext();
-
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -38,12 +36,11 @@ function Register() {
         }
 
         try {
-            await Api.post('/register', registrationData);
-            window.alert("Registration Successful");
-            setIsAuthenticated(true);
-            navigate('*');
+            const response = await Api.post('/register', registrationData);
+            window.alert(response.data);
+            navigate('/login');
         } catch (error) {
-            window.alert(error);
+            window.alert(error.response.data);
         }
     }
 

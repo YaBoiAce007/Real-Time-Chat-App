@@ -5,7 +5,47 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
 
+    const [loginData, setLoginData] = useState(
+        {
+            username: '',
+            password: ''
+        }
+    )
+
+    const { setIsAuthenticated } = useAuthContext();
+
     const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setLoginData(
+            {
+                ...loginData,
+                [e.target.name]: e.target.value
+            }
+        )
+    }
+
+    const handleSubmit = async () => {
+
+        if(!loginData.username || !loginData.password){
+            window.alert('All the fields are required!');
+            return;
+        }
+
+        if(loginData.password.length<6){
+            window.alert('Password must have atleast 6 characters');
+            return;
+        }
+
+        try {
+            const response = await Api.post('/login', loginData);
+            window.alert(response.data);
+            setIsAuthenticated(true);
+            navigate('*');
+        } catch (error) {
+            window.alert(error.response.data);
+        }
+    }
 
     const containerStyle = {
         gap: '2rem',
@@ -22,9 +62,9 @@ function Login() {
         <>
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Login</h1>
-                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" />
-                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" />
-                <button className={`btn tran-eff`}>
+                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
+                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
+                <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Login
                 </button>
                 <p>
