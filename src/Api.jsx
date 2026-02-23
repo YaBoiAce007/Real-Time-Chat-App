@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const Api = axios.create(
     {
-        baseURL: "https://real-time-chat-app-backend-production.up.railway.app",
+        baseURL: "https://real-time-chat-app-backend-production.up.railway.app/real-time-chat-app",
     }
 );
 
