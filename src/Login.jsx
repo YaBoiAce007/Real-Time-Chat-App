@@ -38,10 +38,12 @@ function Login() {
         }
 
         try {
-            const response = await Api.post('/login', loginData);
+            const response = await Api.post('/login', loginData, {_isLogin:true});
             window.alert(response.data);
             setIsAuthenticated(true);
-            navigate('*');
+            localStorage.setItem("token", response.headers['authorization']);
+            console.log(response.headers['authorization']);
+            navigate('/', { replace: true });
         } catch (error) {
             window.alert(error.response.data);
         }
@@ -70,7 +72,7 @@ function Login() {
                 <p>
                     Don't have an account yet?
                 </p>
-                <button className={`btn tran-eff`} onClick={()=>navigate('/register')}>
+                <button className={`btn tran-eff`} onClick={()=>navigate('/register', { replace: true })}>
                     Register
                 </button>
             </div>

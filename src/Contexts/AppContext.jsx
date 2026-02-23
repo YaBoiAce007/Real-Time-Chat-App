@@ -7,6 +7,7 @@ export function AppContextProvider({ children }) {
     const [selectedChat, setSelectedChat] = useState(null);
     const [showSettings, setShowSettings] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
+    const [isLoading, setIsLoading] = useState(true);
 
     return (
         <appContext.Provider value={
@@ -18,7 +19,9 @@ export function AppContextProvider({ children }) {
                 showSettings,
                 setShowSettings,
                 isMobile,
-                setIsMobile
+                setIsMobile,
+                isLoading,
+                setIsLoading
             }
         }
         >

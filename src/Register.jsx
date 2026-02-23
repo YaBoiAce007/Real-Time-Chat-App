@@ -38,7 +38,7 @@ function Register() {
         try {
             const response = await Api.post('/register', registrationData);
             window.alert(response.data);
-            navigate('/login');
+            navigate('/login', { replace: true });
         } catch (error) {
             window.alert(error.response.data);
         }
@@ -67,7 +67,7 @@ function Register() {
                 <p>
                     Already have an account?
                 </p>
-                <button className={`btn tran-eff`} onClick={()=>navigate('/login')}>
+                <button className={`btn tran-eff`} onClick={()=>navigate('/login', { replace: true })}>
                     Login
                 </button>
             </div>

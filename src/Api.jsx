@@ -2,8 +2,22 @@ import axios from 'axios';
 
 const Api = axios.create(
     {
-        baseURL: "http://localhost:8081/real-time-chat-app",
+        baseURL: "https://real-time-chat-app-backend-production.up.railway.app",
     }
-)
+);
+
+Api.interceptors.request.use(
+    (config)=>{
+        const token = localStorage.getItem('token');
+        console.log("Interceptor running, token:", token)
+        if(token){
+            config.headers['authorization'] = token;
+        }
+        return config;
+    },
+    (error)=>{
+        return Promise.reject(error);
+    }
+);
 
 export default Api;
