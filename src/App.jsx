@@ -10,7 +10,7 @@ import Api from './Api';
 
 function App() {
 
-  const { setActiveComponent, setIsMobile, isLoading, setIsLoading } = useAppContext();
+  const { setActiveComponent, setSelectedChat, setIsMobile, isLoading, setIsLoading } = useAppContext();
   const { isAuthenticated, setIsAuthenticated } = useAuthContext();
 
   useEffect(() => {
@@ -50,6 +50,7 @@ function App() {
           localStorage.removeItem("token");
           setIsAuthenticated(false);
           setActiveComponent('Banner');
+          setSelectedChat(null);
           window.alert("Your session has expired, please log in again.");
         }
         return Promise.reject(error);
