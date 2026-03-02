@@ -18,7 +18,7 @@ function Profile() {
         height: '25%',
         borderRadius: '50%',
         fontSize: '6rem',
-        flexShrink: '0'
+        flexShrink: 0
     }
 
     const handleClick = () => {
