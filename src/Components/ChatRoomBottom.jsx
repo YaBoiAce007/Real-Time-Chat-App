@@ -47,7 +47,7 @@ function ChatRoomBottom() {
     return (
         <div style={style} className={`flex-row `}>
             <textarea className={`input-text-area margin-x`} placeholder='Type a message...'></textarea>
-            <Send className={`icon tran-eff margin-x`} onClick={handleClick} />
+            <Send style={{opacity:connected?1:0.25,cursor:connected?'pointer':'not-allowed'}}className={`icon tran-eff margin-x`} onClick={handleClick} />
         </div>
     )
 }
