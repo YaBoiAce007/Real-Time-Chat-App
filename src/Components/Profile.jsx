@@ -14,8 +14,8 @@ function Profile() {
     const style2 = {
         backgroundColor: 'white',
         color: 'black',
-        width: '25%',
-        height: '25%',
+        width: '120%',
+        height: '120%',
         borderRadius: '50%',
         fontSize: '6rem',
         flexShrink: 0
