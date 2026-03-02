@@ -1,7 +1,24 @@
 import { Send } from 'lucide-react';
 import Api from '../Api';
+import useStomp from '../CustomHooks/useStomp';
+import { useAppContext } from '../Contexts/AppContext';
 
 function ChatRoomBottom() {
+
+    const {setMessages} = useAppContext();
+
+    const {connected, sendMessage} = useStomp(
+        "http://localhost:8081/real-time-chat-app/ws-connect",
+        [
+            {
+                destination:"/topic/messages",
+                callback:(frame)=>{
+                    const body = JSON.parse(frame.body);
+                    setMessages((prev)=>[...prev, body])
+                },
+            },
+        ]
+    )
 
     const style = {
         height: '10%',
@@ -12,6 +29,12 @@ function ChatRoomBottom() {
     }
 
     const handleClick = async () => {
+        if(connected){
+            sendMessage("/app/chat",{text:'Hello!'});
+        }
+        else{
+            window.alert("Websocket not connected");
+        }
         try {
             const response = await Api.get('/Greet');
             console.log(response.data);

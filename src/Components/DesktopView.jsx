@@ -1,9 +1,7 @@
 import ChatRoomsContainer from "./ChatRoomsContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
 import Banner from "./Banner";
-import AddFriend from "./AddFriend";
 import { useAppContext } from "../Contexts/AppContext";
-import Friends from "./Friends";
 import Profile from "./Profile";
 import StartChat from "./StartChat";
 
@@ -44,22 +42,6 @@ function DesktopView() {
     switch (activeComponent) {
         case 'Banner':
             return <Banner style={style1} />;
-
-        case 'AddFriend':
-            return (
-                <>
-                    <AddFriend />
-                    <Banner style={style2} />
-                </>
-            );
-
-        case 'Friends':
-            return (
-                <>
-                    <Friends />
-                    <Banner style={style2} />
-                </>
-            );
 
         case 'Profile':
             return (

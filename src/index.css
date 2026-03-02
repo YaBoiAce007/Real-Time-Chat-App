@@ -129,8 +129,6 @@
 }
 
 .chat-rooms,
-.add-friend,
-.friends,
 .profile,
 .start-chat {
     width: 45%;
@@ -166,8 +164,6 @@
 
     .chat-rooms,
     .chat-room,
-    .add-friend,
-    .friends,
     .profile,
     .start-chat,
     .chat-settings {

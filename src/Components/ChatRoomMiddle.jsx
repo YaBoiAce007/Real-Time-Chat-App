@@ -1,6 +1,8 @@
-
+import { useAppContext } from "../Contexts/AppContext";
 
 function ChatRoomMiddle(){
+
+    const {messages} = useAppContext();
 
     const style = {
         height: '80%',
@@ -10,7 +12,9 @@ function ChatRoomMiddle(){
 
     return(
         <div style={style} className={`flex-col`}>
-
+            <ul>
+                {messages.map((m,i)=><li key={i}>{m.text}</li>)}
+            </ul>
         </div>
     )
 }

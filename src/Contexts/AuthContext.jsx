@@ -2,9 +2,20 @@ import { createContext, useContext, useState } from "react";
 
 const authContext = createContext();
 
+export function decodeToken(token) {
+    try {
+        const payload = token.split('.')[1];
+        const decoded = atob(payload);
+        return JSON.parse(decoded);
+    } catch {
+        return null; // return null if token is malformed
+    }
+}
+
 export function AuthContextProvider({ children }) {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     return (
         <authContext.Provider value={
             {

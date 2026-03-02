@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { useAuthContext } from './Contexts/AuthContext';
-import { Route, Routes, Navigate, useNavigate, replace } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Register from './Register';
 import AppContent from './Components/AppContent';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
 import { useAppContext } from './Contexts/AppContext';
 import Api from './Api';
+import { decodeToken } from './Contexts/AuthContext';
 
 function App() {
 
   const { setActiveComponent, setSelectedChat, setIsMobile, isLoading, setIsLoading } = useAppContext();
-  const { isAuthenticated, setIsAuthenticated } = useAuthContext();
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuthContext();
 
   useEffect(() => {
 
@@ -23,19 +24,35 @@ function App() {
         return;
       }
       try {
+        const decoded = decodeToken(token);
+        if (!decoded) {
+          throw new Error('Token is malformed!');
+        }
         const response = await Api.get('/validate', { _isValidation: true });
+        setUser(
+          { username: decoded.sub }
+        );
         console.log(response.data);
         setIsAuthenticated(true);
       }
       catch (error) {
         if (error.response?.status === 401) {
           setIsAuthenticated(false);
-          console.log("Token has expired");
+          console.error("Token has expired");
           localStorage.removeItem('token');
+        }
+        else if (!error.response) {
+          // This catches plain JS errors like our "Token is malformed!" throw,
+          // as well as network errors where the server was unreachable entirely.
+          // These have no error.response — just a message property.
+          setIsAuthenticated(false);
+          localStorage.removeItem('token');
+          console.error(error.message); // shows "Token is malformed!" to the user
         }
         else {
           setIsAuthenticated(false);
-          console.log("Validation failed due to network/server error");
+          console.error("Validation failed due to network/server error");
+          localStorage.removeItem('token');
         }
       }
       finally {

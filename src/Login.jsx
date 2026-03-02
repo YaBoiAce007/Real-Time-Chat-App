@@ -2,6 +2,7 @@ import { useState } from "react";
 import Api from "./Api";
 import { useAuthContext } from "./Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { decodeToken } from "./Contexts/AuthContext";
 
 function Login() {
 
@@ -12,7 +13,7 @@ function Login() {
         }
     )
 
-    const { setIsAuthenticated } = useAuthContext();
+    const { setIsAuthenticated, setUser } = useAuthContext();
 
     const navigate = useNavigate();
 
@@ -39,10 +40,19 @@ function Login() {
 
         try {
             const response = await Api.post('/login', loginData, {_isLogin:true});
+            const token = response.headers['authorization'];
+            const decoded = decodeToken(token);
+            if(!decoded){
+                window.alert('Token is malformed!');
+                return;
+            }
+            setUser(
+                {username:decoded.sub}
+            );
             window.alert(response.data);
             setIsAuthenticated(true);
-            localStorage.setItem("token", response.headers['authorization']);
-            console.log(response.headers['authorization']);
+            localStorage.setItem("token", token);
+            console.log(token);
             navigate('/', { replace: true });
         } catch (error) {
             window.alert(error.response.data);
