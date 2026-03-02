@@ -8,7 +8,7 @@ function ChatRoomBottom() {
     const {setMessages} = useAppContext();
 
     const {connected, sendMessage} = useStomp(
-        "http://localhost:8081/real-time-chat-app/ws-connect",
+        import.meta.env.VITE_WS_URL,
         [
             {
                 destination:"/topic/messages",
