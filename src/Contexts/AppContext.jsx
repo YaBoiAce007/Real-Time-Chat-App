@@ -9,6 +9,7 @@ export function AppContextProvider({ children }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
     const [isLoading, setIsLoading] = useState(true);
     const [messages, setMessages] = useState([]);
+    const [drafts, setDrafts] = useState({});
 
     return (
         <appContext.Provider value={
@@ -24,7 +25,9 @@ export function AppContextProvider({ children }) {
                 isLoading,
                 setIsLoading,
                 messages,
-                setMessages
+                setMessages,
+                drafts,
+                setDrafts
             }
         }
         >

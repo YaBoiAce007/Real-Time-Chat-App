@@ -11,6 +11,7 @@ function useStomp(url, subscriptions = []) {
             const client = new Client(
                 {
                     webSocketFactory: () => new SockJS(url),
+                    connectHeaders: {authorization: localStorage.getItem('token')},
                     reconnectDelay: 5000,
                     onConnect: ()=>{
                         setConnected(true);

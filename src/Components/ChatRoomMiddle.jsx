@@ -1,8 +1,8 @@
 import { useAppContext } from "../Contexts/AppContext";
 
-function ChatRoomMiddle(){
+function ChatRoomMiddle() {
 
-    const {messages} = useAppContext();
+    const { messages } = useAppContext();
 
     const style = {
         height: '80%',
@@ -10,11 +10,20 @@ function ChatRoomMiddle(){
         border: '2px solid white'
     }
 
-    return(
+    
+
+    return (
         <div style={style} className={`flex-col`}>
-            <ul>
-                {messages.map((m,i)=><li key={i}>{m.text}</li>)}
-            </ul>
+            {/* <ul>
+                {messages.map((m)=><li key={m.messageId}>{`${m.sender}\n${m.text}\n${m.timestamp}\n${m.roomId}\n${m.messageId}`}</li>)}
+            </ul> */}
+            {messages.map((m) => (
+                <div key={m.messageId}>
+                    <span>{m.sender}</span><br />
+                    <span>{m.text}</span><br />
+                    <span>{new Date(m.timestamp).toLocaleTimeString()}</span><br /><br /><br />
+                </div>
+            ))}
         </div>
     )
 }

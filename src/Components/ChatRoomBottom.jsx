@@ -1,11 +1,14 @@
 import { Send } from 'lucide-react';
-import Api from '../Api';
 import useStomp from '../CustomHooks/useStomp';
 import { useAppContext } from '../Contexts/AppContext';
 
 function ChatRoomBottom() {
 
-    const {setMessages} = useAppContext();
+    const roomId = 'room1';
+
+    const {setMessages, drafts, setDrafts} = useAppContext();
+
+    const draft = drafts[roomId] || '';
 
     const {connected, sendMessage} = useStomp(
         import.meta.env.VITE_WS_URL,
@@ -28,26 +31,31 @@ function ChatRoomBottom() {
         border: '2px solid white'
     }
 
+    const handleChange = (e)=>{
+        setDrafts(
+            (prev)=>(
+                {
+                    ...prev,
+                    [roomId]:e.target.value
+                }
+            )
+        )
+    }
+
     const handleClick = async () => {
         if(connected){
-            sendMessage("/app/chat",{text:'Hello!'});
-        }
-        else{
-            window.alert("Websocket not connected");
-            return;
-        }
-        try {
-            const response = await Api.get('/Greet');
-            console.log(response.data);
-        }
-        catch(error){
-            console.log(error.response);
+            if(!draft.trim()){
+                setDrafts(prev=>({...prev, [roomId]:''}));
+                return;
+            }
+            sendMessage("/app/chat",{text:draft, roomId});
+            setDrafts(prev=>({...prev, [roomId]:''}));
         }
     }
 
     return (
         <div style={style} className={`flex-row `}>
-            <textarea className={`input-text-area margin-x`} placeholder='Type a message...'></textarea>
+            <textarea value={draft} className={`input-text-area margin-x`} placeholder='Type a message...' onChange={handleChange}></textarea>
             <Send style={{opacity:connected?1:.25,pointerEvents: connected ? 'auto' : 'none'}}className={`icon tran-eff margin-x`} onClick={handleClick} />
         </div>
     )

@@ -16,10 +16,12 @@ function Register() {
 
     const handleChange = (e) => {
         setRegistrationData(
-            {
-                ...registrationData,
-                [e.target.name]: e.target.value
-            }
+            prev=>(
+                {
+                    ...prev,
+                    [e.target.name]: e.target.value
+                }
+            )
         )
     }
 
@@ -40,7 +42,7 @@ function Register() {
             window.alert(response.data);
             navigate('/login', { replace: true });
         } catch (error) {
-            window.alert(error.response.data);
+            window.alert(error.response?.data || "Registration Failed");
         }
     }
 
@@ -59,8 +61,8 @@ function Register() {
         <>
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Register</h1>
-                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
-                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
+                <input value={registrationData.username} style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
+                <input value={registrationData.password} style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
                 <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Register
                 </button>

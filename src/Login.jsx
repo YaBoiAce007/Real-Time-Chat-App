@@ -18,36 +18,37 @@ function Login() {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setLoginData(
+        setLoginData(prev => (
             {
-                ...loginData,
+                ...prev,
                 [e.target.name]: e.target.value
             }
+        )
         )
     }
 
     const handleSubmit = async () => {
 
-        if(!loginData.username || !loginData.password){
+        if (!loginData.username || !loginData.password) {
             window.alert('All the fields are required!');
             return;
         }
 
-        if(loginData.password.length<6){
+        if (loginData.password.length < 6) {
             window.alert('Password must have atleast 6 characters');
             return;
         }
 
         try {
-            const response = await Api.post('/login', loginData, {_isLogin:true});
+            const response = await Api.post('/login', loginData, { _isLogin: true });
             const token = response.headers['authorization'];
             const decoded = decodeToken(token);
-            if(!decoded){
+            if (!decoded) {
                 window.alert('Token is malformed!');
                 return;
             }
             setUser(
-                {username:decoded.sub}
+                { username: decoded.sub }
             );
             window.alert(response.data);
             setIsAuthenticated(true);
@@ -55,7 +56,7 @@ function Login() {
             console.log(token);
             navigate('/', { replace: true });
         } catch (error) {
-            window.alert(error.response.data);
+            window.alert(error.response?.data || "Login Failed");
         }
     }
 
@@ -74,15 +75,15 @@ function Login() {
         <>
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Login</h1>
-                <input style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
-                <input style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
+                <input value={loginData.username} style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
+                <input value={loginData.password} style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password" name="password" onChange={handleChange} />
                 <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Login
                 </button>
                 <p>
                     Don't have an account yet?
                 </p>
-                <button className={`btn tran-eff`} onClick={()=>navigate('/register', { replace: true })}>
+                <button className={`btn tran-eff`} onClick={() => navigate('/register', { replace: true })}>
                     Register
                 </button>
             </div>

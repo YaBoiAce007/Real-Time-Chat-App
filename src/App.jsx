@@ -32,6 +32,7 @@ function App() {
         setUser(
           { username: decoded.sub }
         );
+        
         console.log(response.data);
         setIsAuthenticated(true);
       }
