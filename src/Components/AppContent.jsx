@@ -8,7 +8,7 @@ import Api from "../Api";
 
 function AppContent() {
 
-    const { isMobile, setMessages, setRooms, setSendMessage, setConnected, setSubscribe } = useAppContext();
+    const { isMobile, setRooms, setSendMessage, setConnected, setSubscribe } = useAppContext();
 
     const {connected, subscribe, sendMessage} = useStomp(
         import.meta.env.VITE_WS_URL,

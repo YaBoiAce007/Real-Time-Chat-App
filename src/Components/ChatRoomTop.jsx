@@ -4,7 +4,7 @@ import {useAppContext} from '../Contexts/AppContext';
 
 function ChatRoomTop({goBackTo}) {
 
-    const {setActiveComponent, setSelectedChat, setShowSettings} = useAppContext();
+    const {setActiveComponent, setSelectedChat, setShowSettings, selectedChat} = useAppContext();
 
     const style = {
         height: '10%',
@@ -17,7 +17,7 @@ function ChatRoomTop({goBackTo}) {
     return (
         <div style={style} className={`flex-row`}>
             <CircleChevronLeft className={`icon tran-eff`} onClick={()=>{setActiveComponent(goBackTo); setSelectedChat(null)}}/>
-            <h2 className={`nw-hide-ellip`}>Chat Room Name</h2>
+            <h2 className={`nw-hide-ellip`}>{selectedChat?.name}</h2>
             <EllipsisVertical className={`icon tran-eff `} onClick={()=>setShowSettings(true)}/>
         </div>
     )
