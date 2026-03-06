@@ -3,8 +3,10 @@ import { useAuthContext } from "../Contexts/AuthContext";
 
 function ChatRoomMiddle() {
 
-    const { messages } = useAppContext();
+    const { messages, selectedChat } = useAppContext();
     const { user } = useAuthContext();
+
+    const roomMessages = messages[selectedChat.roomId] || [];
 
     const style = {
         height: '80%',
@@ -13,7 +15,7 @@ function ChatRoomMiddle() {
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '8px',
+        gap: '10px',
         padding: '10px'
     };
 
@@ -37,7 +39,6 @@ function ChatRoomMiddle() {
         padding: '8px 12px',
         borderRadius: '12px',
         maxWidth: '60%',
-        position: 'relative',
         wordBreak: 'break-word'
     };
 
@@ -51,7 +52,7 @@ function ChatRoomMiddle() {
 
     return (
         <div style={style}>
-            {messages.map((m) => {
+            {roomMessages.map((m) => {
                 const isOwn = m.sender === user?.username;
                 return (
                     <div
@@ -67,7 +68,7 @@ function ChatRoomMiddle() {
                             {m.sender?.charAt(0).toUpperCase()}
                         </div>
                         <div style={bubbleStyle}>
-                            <span style={{ display: 'block' }}>{m.text}</span>
+                            <span style={{ display: 'block'}}>{m.text}</span>
                             <span style={timestampStyle}>
                                 {new Date(m.timestamp).toLocaleTimeString()}
                             </span>

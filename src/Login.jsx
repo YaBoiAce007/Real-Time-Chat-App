@@ -29,8 +29,8 @@ function Login() {
 
     const handleSubmit = async () => {
 
-        if (!loginData.username || !loginData.password) {
-            window.alert('All the fields are required!');
+        if (!loginData.username.trim() || !loginData.password.trim()) {
+            window.alert('All the fields are required and they should not be blank spaces!');
             return;
         }
 
@@ -40,7 +40,10 @@ function Login() {
         }
 
         try {
-            const response = await Api.post('/login', loginData, { _isLogin: true });
+            const response = await Api.post('/login', {
+                username: loginData.username.trim(),
+                password: loginData.password.trim()
+            }, { _isLogin: true });
             const token = response.headers['authorization'];
             const decoded = decodeToken(token);
             if (!decoded) {

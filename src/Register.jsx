@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Api from "./Api";
-import { useAuthContext } from "./Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -27,8 +26,8 @@ function Register() {
 
     const handleSubmit = async () => {
 
-        if(!registrationData.username || !registrationData.password){
-            window.alert('All the fields are required!');
+        if(!registrationData.username.trim() || !registrationData.password.trim()){
+            window.alert('All the fields are required and they should not be blank spaces!');
             return;
         }
 
@@ -38,7 +37,10 @@ function Register() {
         }
 
         try {
-            const response = await Api.post('/register', registrationData);
+            const response = await Api.post('/register', {
+                username: registrationData.username.trim(),
+                password: registrationData.password.trim()
+            });
             window.alert(response.data);
             navigate('/login', { replace: true });
         } catch (error) {

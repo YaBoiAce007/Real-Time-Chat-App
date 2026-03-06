@@ -1,8 +1,31 @@
+import { useEffect } from 'react';
 import { useAppContext } from '../Contexts/AppContext';
 
 function ChatRoomsBottom() {
 
-    const { setSelectedChat } = useAppContext()
+    const {selectedChat, setSelectedChat, rooms, subscribe, setMessages, connected } = useAppContext()
+
+    useEffect(()=>{
+        if(!selectedChat || !subscribe || !connected){
+            return;
+        }
+        const unsubscribe = subscribe(
+            `/topic/${selectedChat.roomId}`,
+            (frame)=>{
+                const body = JSON.parse(frame.body);
+                setMessages((prev)=>({
+                    ...prev,
+                    [selectedChat.roomId]: [...(prev[selectedChat.roomId] || []), body]
+                }));
+            }
+        );
+
+        return ()=>{
+            if(unsubscribe){
+                unsubscribe();
+            }
+        }
+    },[selectedChat?.roomId, connected]);
 
     const outerStyle = {
         height: '90%',
@@ -12,23 +35,31 @@ function ChatRoomsBottom() {
         overflowX: 'hidden',
         textOverflow: 'ellipsis'
         */
-        border: '2px solid white'
+        border: '2px solid white',
+        padding: '10px',
+        gap: '10px',
+        overflowY: 'auto'
     };
 
     const innerStyle = {
-        marginTop: '.5rem',
-        height: '10%',
         width: '100%',
         border: '2px solid white',
-        justifyContent: 'center'
+        borderRadius: '1rem',
+        justifyContent: 'center',
+        padding: '10px',
     }
 
     return (
         <div style={outerStyle} className={`flex-col`}>
-            <div style={innerStyle} className={`flex-col tran-eff`} onClick={() => setSelectedChat(1)}>
-                <p className={`nw-hide-ellip`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos minima minus a alias impedit! Iusto quod pariatur error dignissimos doloremque quas distinctio, fugit eos officia porro nobis, ipsam minima velit ad cumque perferendis eligendi, ipsa dolorem modi aperiam. Deleniti distinctio nulla voluptas!</p>
-                <p className={`nw-hide-ellip`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere cumque, eum facilis numquam eveniet itaque temporibus, perferendis quod ipsam, hic autem unde dignissimos error atque sed obcaecati voluptate ipsa? Voluptatum ipsum magnam ipsa eveniet repellat voluptatibus minima illo repudiandae dolorem, aut a similique.</p>
-            </div>
+            {rooms.map((room) => (
+                <div
+                    key={room.roomId}
+                    style={innerStyle}
+                    className={`flex-col tran-eff`}
+                    onClick={() => setSelectedChat(room)}>
+                    <p className={`nw-hide-ellip`}>{room.name}</p>
+                </div>
+            ))}
         </div>
     )
 }

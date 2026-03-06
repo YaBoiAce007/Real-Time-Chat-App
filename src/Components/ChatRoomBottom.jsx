@@ -1,27 +1,11 @@
 import { Send } from 'lucide-react';
-import useStomp from '../CustomHooks/useStomp';
 import { useAppContext } from '../Contexts/AppContext';
 
 function ChatRoomBottom() {
 
-    const roomId = 'room1';
+    const {drafts, setDrafts, sendMessage, connected, selectedChat} = useAppContext();
 
-    const {setMessages, drafts, setDrafts} = useAppContext();
-
-    const draft = drafts[roomId] || '';
-
-    const {connected, sendMessage} = useStomp(
-        import.meta.env.VITE_WS_URL,
-        [
-            {
-                destination:"/topic/messages",
-                callback:(frame)=>{
-                    const body = JSON.parse(frame.body);
-                    setMessages((prev)=>[...prev, body])
-                },
-            },
-        ]
-    )
+    const draft = drafts[selectedChat?.roomId] || '';
 
     const style = {
         height: '10%',
@@ -36,7 +20,7 @@ function ChatRoomBottom() {
             (prev)=>(
                 {
                     ...prev,
-                    [roomId]:e.target.value
+                    [selectedChat?.roomId]:e.target.value
                 }
             )
         )
@@ -45,11 +29,11 @@ function ChatRoomBottom() {
     const handleClick = async () => {
         if(connected){
             if(!draft.trim()){
-                setDrafts(prev=>({...prev, [roomId]:''}));
+                setDrafts(prev=>({...prev, [selectedChat?.roomId]:''}));
                 return;
             }
-            sendMessage("/app/chat",{text:draft, roomId});
-            setDrafts(prev=>({...prev, [roomId]:''}));
+            sendMessage("/app/chat",{text:draft, roomId: selectedChat?.roomId});
+            setDrafts(prev=>({...prev, [selectedChat?.roomId]:''}));
         }
     }
 

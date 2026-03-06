@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 
@@ -30,7 +30,7 @@ function useStomp(url, subscriptions = []) {
         },[url]
     );
 
-    function sendMessage(destination, body){
+    const sendMessage = useCallback((destination, body)=>{
         if(clientRef.current?.connected){
             clientRef.current.publish(
                 {
@@ -39,9 +39,16 @@ function useStomp(url, subscriptions = []) {
                 }
             )
         }
-    }
+    },[]);
+
+    const subscribe = useCallback((destination, callback)=>{
+        if(clientRef.current?.connected){
+            const subObj = clientRef.current.subscribe(destination, callback);
+            return ()=>subObj.unsubscribe();
+        }
+    },[]);
     
-    return {connected, sendMessage};
+    return {connected, subscribe, sendMessage};
 }
 
 export default useStomp;

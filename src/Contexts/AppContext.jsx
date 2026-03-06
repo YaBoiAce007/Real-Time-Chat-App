@@ -8,8 +8,12 @@ export function AppContextProvider({ children }) {
     const [showSettings, setShowSettings] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
     const [isLoading, setIsLoading] = useState(true);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState({});
     const [drafts, setDrafts] = useState({});
+    const [rooms, setRooms] = useState([]);
+    const [connected, setConnected] = useState(false);
+    const [sendMessage, setSendMessage] = useState(null);
+    const [subscribe, setSubscribe] = useState(null);
 
     return (
         <appContext.Provider value={
@@ -27,7 +31,15 @@ export function AppContextProvider({ children }) {
                 messages,
                 setMessages,
                 drafts,
-                setDrafts
+                setDrafts,
+                rooms,
+                setRooms,
+                connected,
+                setConnected,
+                sendMessage,
+                setSendMessage,
+                subscribe,
+                setSubscribe
             }
         }
         >
