@@ -8,7 +8,7 @@ import Api from "../Api";
 
 function AppContent() {
 
-    const { isMobile, setRooms, setSendMessage, setConnected, setSubscribe } = useAppContext();
+    const { isMobile, setRooms, setSendMessage, setConnected, setSubscribe, selectedChat, setMessages} = useAppContext();
 
     const {connected, subscribe, sendMessage} = useStomp(
         import.meta.env.VITE_WS_URL,
@@ -41,6 +41,28 @@ function AppContent() {
         setSendMessage(()=>sendMessage);
         setSubscribe(()=>subscribe);
     },[connected, subscribe, sendMessage]);
+
+    useEffect(()=>{
+        if(!selectedChat || !subscribe || !connected){
+            return;
+        }
+        const unsubscribe = subscribe(
+            `/topic/${selectedChat.roomId}`,
+            (frame)=>{
+                const body = JSON.parse(frame.body);
+                setMessages((prev)=>({
+                    ...prev,
+                    [selectedChat.roomId]: [...(prev[selectedChat.roomId] || []), body]
+                }));
+            }
+        );
+
+        return ()=>{
+            if(unsubscribe){
+                unsubscribe();
+            }
+        }
+    },[selectedChat?.roomId, connected]);
 
     return (
         <section className={`flex-row fullscreen-display bg-font-color`}>

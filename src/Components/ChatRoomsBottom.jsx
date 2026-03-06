@@ -3,29 +3,9 @@ import { useAppContext } from '../Contexts/AppContext';
 
 function ChatRoomsBottom() {
 
-    const {selectedChat, setSelectedChat, rooms, subscribe, setMessages, connected } = useAppContext()
+    const { setSelectedChat, rooms } = useAppContext()
 
-    useEffect(()=>{
-        if(!selectedChat || !subscribe || !connected){
-            return;
-        }
-        const unsubscribe = subscribe(
-            `/topic/${selectedChat.roomId}`,
-            (frame)=>{
-                const body = JSON.parse(frame.body);
-                setMessages((prev)=>({
-                    ...prev,
-                    [selectedChat.roomId]: [...(prev[selectedChat.roomId] || []), body]
-                }));
-            }
-        );
-
-        return ()=>{
-            if(unsubscribe){
-                unsubscribe();
-            }
-        }
-    },[selectedChat?.roomId, connected]);
+    
 
     const outerStyle = {
         height: '90%',
