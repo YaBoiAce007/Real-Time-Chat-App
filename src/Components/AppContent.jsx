@@ -43,7 +43,7 @@ function AppContent() {
     },[connected, subscribe, sendMessage]);
 
     useEffect(()=>{
-        if(!selectedChat || !subscribe || !connected){
+        if(!selectedChat || !connected){
             return;
         }
         const unsubscribe = subscribe(

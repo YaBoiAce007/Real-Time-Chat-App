@@ -32,7 +32,7 @@ function ChatRoomBottom() {
                 setDrafts(prev=>({...prev, [selectedChat?.roomId]:''}));
                 return;
             }
-            sendMessage("/app/chat",{text:draft, roomId: selectedChat?.roomId});
+            sendMessage("/message/group",{text:draft, roomId: selectedChat?.roomId});
             setDrafts(prev=>({...prev, [selectedChat?.roomId]:''}));
         }
     }

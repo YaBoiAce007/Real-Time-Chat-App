@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Api from "./Api";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 function Register() {
 
@@ -10,12 +11,13 @@ function Register() {
             password: ''
         }
     )
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         setRegistrationData(
-            prev=>(
+            prev => (
                 {
                     ...prev,
                     [e.target.name]: e.target.value
@@ -26,12 +28,12 @@ function Register() {
 
     const handleSubmit = async () => {
 
-        if(!registrationData.username.trim() || !registrationData.password.trim()){
+        if (!registrationData.username.trim() || !registrationData.password.trim()) {
             window.alert('All the fields are required and they should not be blank spaces!');
             return;
         }
 
-        if(registrationData.password.length<6){
+        if (registrationData.password.length < 6) {
             window.alert('Password must have atleast 6 characters');
             return;
         }
@@ -47,6 +49,10 @@ function Register() {
             window.alert(error.response?.data || "Registration Failed");
         }
     }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prev => !prev);
+    };
 
     const containerStyle = {
         gap: '2rem',
@@ -64,14 +70,34 @@ function Register() {
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Register</h1>
                 <input value={registrationData.username} style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
-                <input value={registrationData.password} style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password"  name="password" onChange={handleChange} />
+                <div className={`flex-row center-center auth-input`} style={inputStyle}>
+                    <input
+                        value={registrationData.password}
+                        style={{ width: '100%', height: '100%' }}
+                        className={`input-text-area`}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter password"
+                        name="password"
+                        onChange={handleChange}
+                    />
+
+                    <span
+                        onClick={togglePasswordVisibility}
+                        className={`flex-row center-center`}
+                        style={{
+                            cursor: "pointer"
+                        }}
+                    >
+                        {showPassword ? <Eye className={`icon  tran-eff`} /> : <EyeOff className={`icon  tran-eff`} />}
+                    </span>
+                </div>
                 <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Register
                 </button>
                 <p>
                     Already have an account?
                 </p>
-                <button className={`btn tran-eff`} onClick={()=>navigate('/login', { replace: true })}>
+                <button className={`btn tran-eff`} onClick={() => navigate('/login', { replace: true })}>
                     Login
                 </button>
             </div>

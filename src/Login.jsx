@@ -3,8 +3,11 @@ import Api from "./Api";
 import { useAuthContext } from "./Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "./Contexts/AuthContext";
+import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const [loginData, setLoginData] = useState(
         {
@@ -63,6 +66,10 @@ function Login() {
         }
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(prev => !prev);
+    };
+
     const containerStyle = {
         gap: '2rem',
         border: '2px solid white',
@@ -79,7 +86,27 @@ function Login() {
             <div style={containerStyle} className={`flex-col bg-font-color center-center fullscreen-display`}>
                 <h1>Login</h1>
                 <input value={loginData.username} style={inputStyle} className={`input-text-area auth-input`} type="text" placeholder="Enter username" name="username" onChange={handleChange} />
-                <input value={loginData.password} style={inputStyle} className={`input-text-area auth-input`} type="password" placeholder="Enter password" name="password" onChange={handleChange} />
+                <div className={`flex-row center-center auth-input`} style={inputStyle}>
+                    <input
+                        value={loginData.password}
+                        style={{ width: '100%', height: '100%' }}
+                        className={`input-text-area`}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter password"
+                        name="password"
+                        onChange={handleChange}
+                    />
+
+                    <span
+                        onClick={togglePasswordVisibility}
+                        className={`flex-row center-center`}
+                        style={{
+                            cursor: "pointer"
+                        }}
+                    >
+                        {showPassword ? <Eye className={`icon  tran-eff`} /> : <EyeOff className={`icon  tran-eff`} />}
+                    </span>
+                </div>
                 <button className={`btn tran-eff`} onClick={handleSubmit}>
                     Login
                 </button>

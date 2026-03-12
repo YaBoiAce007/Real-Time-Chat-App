@@ -1,12 +1,67 @@
+import { useCallback, useEffect, useRef } from "react";
 import { useAppContext } from "../Contexts/AppContext";
 import { useAuthContext } from "../Contexts/AuthContext";
+import Api from "../Api";
 
 function ChatRoomMiddle() {
 
-    const { messages, selectedChat } = useAppContext();
+    const { messages, selectedChat, setMessages } = useAppContext();
     const { user } = useAuthContext();
+    const containerRef = useRef(null);
 
     const roomMessages = messages[selectedChat.roomId] || [];
+
+    useEffect(() => {
+        if (!selectedChat?.roomId) return;
+
+        const fetchInitialMessages = async () => {
+            const response = await Api.get(`/rooms/${selectedChat.roomId}/messages`);
+            const initialMessages = response.data;
+
+            setMessages((prev) => ({
+                ...prev,
+                [selectedChat.roomId]: initialMessages
+            }));
+
+            // scroll to bottom after messages load
+            requestAnimationFrame(() => {
+                if (containerRef.current) {
+                    containerRef.current.scrollTop = containerRef.current.scrollHeight;
+                }
+            });
+        }
+
+        fetchInitialMessages();
+    }, [selectedChat.roomId]);
+
+    const fetchOlderMessages = useCallback(async () => {
+        const oldest = roomMessages[0];
+        if (!oldest) return;
+
+        const prevScrollHeight = containerRef.current.scrollHeight;
+        const response = await Api.get(`/rooms/${selectedChat.roomId}/messages?before=${oldest.timestamp}`);
+        const olderMessages = response.data;
+
+        if (olderMessages.length === 0) return;
+
+        setMessages((prev) => ({
+            ...prev,
+            [selectedChat.roomId]: [...olderMessages, ...prev[selectedChat.roomId]]
+        }));
+
+        requestAnimationFrame(
+            () => {
+                const newScrollHeight = containerRef.current.scrollHeight;
+                containerRef.current.scrollTop = newScrollHeight - prevScrollHeight;
+            }
+        );
+    }, [selectedChat.roomId, roomMessages]);
+
+    const handleScroll = () => {
+        if (containerRef.current.scrollTop === 0) {
+            fetchOlderMessages();
+        }
+    }
 
     const style = {
         height: '80%',
@@ -51,7 +106,7 @@ function ChatRoomMiddle() {
     };
 
     return (
-        <div style={style}>
+        <div ref={containerRef} onScroll={handleScroll} style={style}>
             {roomMessages.map((m) => {
                 const isOwn = m.sender === user?.username;
                 return (
@@ -68,7 +123,7 @@ function ChatRoomMiddle() {
                             {m.sender?.charAt(0).toUpperCase()}
                         </div>
                         <div style={bubbleStyle}>
-                            <span style={{ display: 'block'}}>{m.text}</span>
+                            <span style={{ display: 'block' }}>{m.text}</span>
                             <span style={timestampStyle}>
                                 {new Date(m.timestamp).toLocaleTimeString()}
                             </span>
