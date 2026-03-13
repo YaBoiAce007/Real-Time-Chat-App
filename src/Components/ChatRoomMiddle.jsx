@@ -71,7 +71,8 @@ function ChatRoomMiddle() {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        padding: '10px'
+        padding: '10px',
+        scrollBehavior: 'smooth'
     };
 
     const iconStyle = {
